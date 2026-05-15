@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fed6e3 0%, #a8c1ef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            animation: popIn 1s ease-out;
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .cake {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        /* Wish Button */
+        .btn {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ff2a65;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Balloons styling */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: flyUp 6s linear infinite;
+        }
+
+        @keyframes flyUp {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(30px); }
+            100% { bottom: 105vh; transform: translateX(-30px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="cake">🎂</div>
+        <img src="bdddgcat.jpg" alt="မွေးနေ့ရှင်ပုံ" style="max-width: 42%; height: auto; border-radius: 10px; margin-bottom: 15px;">
+        <h1>Happy Birthday! 🎉</h1>
+        
+        <!-- ဒီနေရာမှာ ကိုယ်ရေးချင်တဲ့ စာသားတွေကို ပြောင်းရေးလို့ရပါတယ် -->
+        <p>မွေးနေ့မှာ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ လိုအင်ဆန္ဒတွေအကုန်ပြည့်ပါစေ။ အလုပ်တွေလည်း အောင်မြင်ပြီး ပျော်ရွှင်စရာနေ့ရက်တွေကို ပိုင်ဆိုင်နိုင်ပါစေကြောင်း ဆုတောင်းပေးလိုက်ပါတယ်ဗျာ။ ✨</p>
+        
+        <button class="btn" onclick="createConfetti()">နှိပ်ကြည့်လိုက်ပါ 🎁</button>
+    </div>
+
+    <script>
+        // ပူဖောင်းလေးတွေ အလိုအလျောက် ပျံတက်အောင် လုပ်တဲ့ Code
+        function createBalloon() {
+            const colors = ['#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#70e000', '#00b4d8', '#9b5de5', '#fee440'];
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            
+            // Random styling
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 3 + 4) + 's'; // 4s to 7s
+            
+            document.body.appendChild(balloon);
+            
+            // ပျံတက်သွားပြီးရင် ဖျောက်လိုက်တာ
+            setTimeout(() => {
+                balloon.remove();
+            }, 7000);
+        }
+        // ၁ စက္ကန့်ကို ပူဖောင်းတစ်လုံးနှုန်းနဲ့ အမြဲလွှတ်နေမယ်
+        setInterval(createBalloon, 1000);
+
+        // ခလုတ်နှိပ်ရင် ပူဖောင်းတွေ အများကြီး တစ်ပြိုင်နက် ထွက်လာအောင် လုပ်တာ
+        function createConfetti() {
+            for(let i=0; i<15; i++) {
+                setTimeout(createBalloon, i * 100);
+            }
+            alert("✨ why did you open this clip! 🌟");
+        }
+    </script>
+
+</body>
+</html>
