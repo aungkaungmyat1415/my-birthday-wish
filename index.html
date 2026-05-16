@@ -33,7 +33,7 @@
             z-index: 10;
             animation: popIn 1s ease-out;
         }
-
+        
         h1 {
             color: #ff477e;
             font-size: 2.5rem;
@@ -98,6 +98,50 @@
             50% { transform: translateX(30px); }
             100% { bottom: 105vh; transform: translateX(-30px); }
         }
+        /* Modal ရဲ့ နောက်ခံ */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+
+/* Modal အကွက်အလယ်က box */
+.modal-content {
+    background: rgba(255, 255, 255, 0.9);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+/* ပိတ်တဲ့ ခလုတ် (x) */
+.close {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 28px; cursor: pointer;
+}
+
+/* ပုံတွေကို Grid ချတာ (၄ ပုံ သို့မဟုတ် ၆ ပုံအတွက်) */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* တစ်တန်း ၂ ပုံ */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* ပုံတွေ အချိုးအစား မပျက်အောင် */
+    border-radius: 10px;
+}
     </style>
 </head>
 <body>
@@ -112,7 +156,18 @@
         
         <button class="btn" onclick="createConfetti()">နှိပ်ကြည့်လိုက်ပါ 🎁</button>
     </div>
-
+    <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Birthday Gallery ✨</h2>
+        <div class="image-grid">
+            <img src="a1.png" alt="Memory 1">
+            <img src="a2.png" alt="Memory 2">
+            <img src="a3.jpg" alt="Memory 3">
+            <img src="a4.png" alt="Memory 4">
+            </div>
+    </div>
+</div>
     <script>
         // ပူဖောင်းလေးတွေ အလိုအလျောက် ပျံတက်အောင် လုပ်တဲ့ Code
         function createBalloon() {
@@ -137,11 +192,19 @@
 
         // ခလုတ်နှိပ်ရင် ပူဖောင်းတွေ အများကြီး တစ်ပြိုင်နက် ထွက်လာအောင် လုပ်တာ
         function createConfetti() {
-            for(let i=0; i<15; i++) {
-                setTimeout(createBalloon, i * 100);
-            }
-            alert("✨ why did you open this clip! 🌟");
-        }
+    // ပူဖောင်းတွေ ထွက်လာအောင် လုပ်တာ
+    for(let i=0; i<15; i++) {
+        setTimeout(createBalloon, i * 100);
+    }
+    
+    // Modal ကို ဖွင့်လိုက်တာ
+    document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+    // Modal ကို ပြန်ပိတ်တာ
+    document.getElementById("myModal").style.display = "none";
+}
     </script>
 
 </body>
